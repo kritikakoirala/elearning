@@ -1,0 +1,1489 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Poppins&display=swap');
+
+@font-face {
+  font-family: Georgia;
+  src: url('../fonts/georgia.ttf');
+  font-family: Merriweather;
+  src:url('../fonts/Merriweather-Regular.ttf')
+  
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,h2,h3,h4,h5,h6, a, td, th, li{
+  font-family: 'Poppins', sans-serif;
+}
+
+p,span{
+  font-family: 'Merriweather';
+}
+
+span{
+  font-size: .9em;
+}
+
+body {
+  min-width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+
+ p{
+  margin: 0;
+  padding: 0;
+}
+
+:root{
+  --primary-color:#3C5C91;
+  --secondary-color:#707070;
+}
+
+
+.btn{
+  background-color: var(--primary-color) !important;
+  border: 2px solid var(--primary-color) !important;
+  color: #fff !important;
+  border:none;
+  border-radius: 3px;
+  padding: .6em 1.9em;
+  border: 2px solid var(--primary-color);
+}
+
+.btn:hover{
+  background-color: #fff !important;
+  color: var(--primary-color) !important;
+  border: 2px solid var(--primary-color) !important;
+  transition: .1s ease-in-out;
+}
+
+
+.errorMsg{
+  color: red;
+  font-weight: 600;
+  margin: 1em 0;
+  display: block;
+}
+
+.alert{
+  margin: 0 2em !important;
+  font-size: .9em;
+}
+
+.errorMessage{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 4em auto;
+}
+
+.errorMessage p{
+  margin: 2em 0;
+}
+
+table{
+  border-radius: 10px !important;
+  box-shadow: 1px 4px 10px rgb(0,0,0,0.1);
+}
+
+table thead{
+  background: linear-gradient(to bottom right, #4776E6, #8E54E9);
+  color: #fff;
+}
+
+table th, table td{
+  font-size: 0.9em;
+}
+
+table a{
+  color: var(--primary-color) !important;
+}
+
+.dataTables_length, .dataTables_filter, .dataTables_info, .dataTables_paginate{
+  margin: 2em 0 !important;
+}
+
+.dataTables_filter input{
+  padding: 1em 1.3em;
+  border-radius: 5px;
+  border: 2px solid #e7e7e7;
+  /* border: none; */
+  /* box-shadow: 1px 1px 1px 1px rgb(0,0,0,0.3); */
+}
+
+/*===============================Navigation=====================================*/
+
+
+.navbar{
+  padding: 1em;
+  background-color: var(--primary-color);
+}
+
+.navbar button{
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.navbar-toggler .fas{
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.navbar-brand{
+  margin-left: 3em;
+  color: #fff;
+}
+
+.navbar-brand:hover{
+  color: #000;
+}
+
+.navbar-nav .nav-item{
+  padding: 0 1em;
+}
+
+.nav-item .nav-link{
+  color: #fff;
+  /* font-weight: 600; */
+  font-size: 0.9em;
+  text-transform: capitalize;
+}
+
+.nav-item .nav-link:hover{
+  color: #000;
+}
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
+}
+
+.form-inline {
+  display: block !important;
+  width: 40%;
+  padding: 0 1em 0 2em;
+}
+
+.form-inline .form-control{
+  min-width: 100%;
+}
+
+.profileLink{
+  position: relative;
+}
+
+.booking_notification{
+  position: absolute;
+  top: 40px;
+  right: 12%;
+  background-color: red;
+  color: #fff;
+  border-radius: 50%;
+  padding: .2em .7em;
+}
+
+
+/* ============================== Modals ======================================== */
+
+.modal-title{
+  color:var(--primary-color);
+}
+
+
+#registerModal .modal-body{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  padding: 3em 2em !important;
+}
+
+#registerModal .modal-body::after{
+  position: absolute;
+  content: '';
+  top: 12px;
+  left: 50%;
+  border-right: 1px solid rgb(0,0,0,0.3);
+  height: 125px;
+}
+
+.modal-body p{
+  font-weight: 600;
+}
+
+.modal-body a{
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.modal-body a{
+  color: var(--primary-color);
+}
+
+/*=============================== LandingPage=============================*/
+
+.landingPage {
+  margin:5em 6em;
+}
+
+.landingPageContent{
+  margin-top: 5em;
+}
+
+.landingPageContent h2{
+  font-size: 3em;
+}
+
+.landingBtn{
+  margin-top: 2em;
+}
+
+
+.landingPage .landingPageImg{
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+
+/*==================================== Teachers ============================= */
+
+.teachers{
+  margin: 4em 3em;
+}
+
+.teachers .teacherImg{
+  width: 100%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.teachers span{
+  font-weight: 600;
+  margin-bottom: 2em;
+}
+
+.teachers p{
+  font-size: 2em; 
+  margin: 1em 0;
+}
+
+/*========================== detailsSections=======================*/
+.detailsSection{
+  background-color: rgb(112, 112, 112, 0.2);
+  padding: 2em 0 3em;
+}
+
+.detailsSection .fas{
+  font-size: 2em;
+}
+
+.courses, .teacher, .student{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.detailsBtn{
+  margin:3em auto 0;
+  border: 2px solid var(--primary-color);
+}
+
+/*========================== students =======================*/
+
+.students{
+  margin: 4em 5em;
+}
+
+.students .content{
+  margin-top: 3em;
+}
+
+.students .studentImg{
+  width: 100%;
+  height: 90%;
+  object-fit: cover;
+}
+
+.students span{
+  font-weight: 600;
+  margin-bottom: 2em;
+}
+
+.students p{
+  font-size: 2em; 
+  margin: 1em 0;
+}
+
+
+/*===================================== features ================================*/
+
+.features{
+  background-color: rgb(112, 112, 112, 0.2);
+  padding: 5em 0;
+}
+
+.features .content{
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgb(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2em;
+}
+
+.features .content .fas, .features .content .fab{
+  font-size: 2em;
+  margin: 1em 0;
+}
+
+.features .content p{
+  font-weight: 600;
+  margin: 0 .5em 2em;
+}
+
+/*===================================== footer ================================*/
+.footer{
+  background-color: var(--primary-color);
+  color:#fff;
+}
+
+.top-footer{
+  padding: 4em 0;
+}
+
+.footer1, .footer2, .footer3, .footer .nav-items{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.footer .nav-item{
+  list-style: none;
+}
+
+.footer .nav-link{
+  color: #fff;
+}
+
+.copyright{
+  background-color: #fff;
+  color: var(--primary-color);
+  font-weight: 600;
+  padding: 1em 0;
+  font-size: .8em;
+}
+
+@media (max-width:1200px){
+  .form-inline {
+    display: block !important;
+    width: 30%;
+    padding: 0 1em 0 2em;
+  }
+  
+}
+
+
+@media (max-width:992px){
+  .landingPageContent{
+    margin-top: 2em;
+  }
+
+  
+  .form-inline {
+    width: 60%;
+    padding: 0 3em 0 1em;
+  }
+
+  .navbar-nav{
+    margin-top: 2em;
+    border-top: 1px solid rgb(255, 255, 255, 0.3);
+  }
+
+  .navbar-nav .nav-item{
+    padding: 1em 0 1em 4em;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.3);
+   
+  }
+
+  .nav-item .nav-link{ 
+    font-size: 1em;
+  }
+
+  .nav-item:hover{
+    background-color: #fff;
+  }
+
+  .nav-item:nth-last-child(1) {
+    border-bottom: 0;
+  }
+}
+
+@media (max-width:768px){
+  .navbar-brand{
+    margin-left: 1em;
+  }
+
+  .form-inline{
+    width: 50%;
+  }
+  .landingPage {
+    margin:5em 3em;
+  }
+  .landingPageContent h2{
+    font-size: 1.6em;
+  }
+  .students, .teachers{
+    margin: 4em 2em;
+  }
+
+  .studentImg, .teacherImg{
+    width: 50%;
+    height: 50%;
+  }
+
+  .teachers p, .students p{
+    font-size: 1.3em;
+  }
+}
+
+@media (max-width:600px){
+  .footer1, .footer2, .footer3{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media (max-width:600px){
+  .form-inline{
+    width: 100%;
+    order:3;
+    margin-top: 2em;
+    padding: 1em;
+  }
+}
+
+
+/* ============================Teacher Dashboard======================== */
+
+.teacher_dashboard{
+  margin:3em 1em 0;
+}
+
+.topButtons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* margin: 0 3em; */
+  background:linear-gradient(to bottom right, #4776E6, #8E54E9);
+  padding:2em 4em;
+}
+
+.topButtons .btn{
+  background-color: #fff !important;
+  border: 1px solid #fff !important;
+  color: var(--primary-color) !important;
+}
+
+.topButtons .btn:hover{
+  background-color: var(--primary-color) !important;
+  border: 1px solid #fff !important;
+  color: #fff !important;
+}
+
+.topButtons .notifications a{
+  color: #fff !important;
+}
+
+.topButtons .notifications{
+  
+  padding: 10px;
+  display: inline-block;
+  border-radius: 5px;
+  text-align: center;
+  animation: blinkingBackground 4s infinite;
+ 
+}
+
+@keyframes blinkingBackground{
+  0%		{ background-color: #10c018;}
+  25%		{ background-color: #ef0a1a;}
+  50%		{ background-color: #10c018;}
+  75%		{ background-color: #ef0a1a;}
+  100%	{ background-color: #10c018;}
+}
+
+.displayCourses {
+  margin: 3em 2em 0;
+}
+
+.displayCourses .courseInfo{
+  /* background:#fff; */
+  background-color: rgb(60, 92, 145, 0.8);
+  border-radius: 3px;
+  /* box-shadow: 0 0 10px  rgba(0,0,0,0.3); */
+  margin:1em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 0;
+  cursor: pointer;
+  width: 70%;
+  margin: 1em auto;
+  color: #Fff;
+}
+
+.displayCourses .courseInfo:hover{
+  box-shadow: 0 0 10px  rgba(0,0,0,0.6);
+  text-decoration: none;
+}
+
+.notification{
+  background-color: rgb(112, 112, 112, 0.2);
+  padding: 3em 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin:2em 0 0 0;
+}
+
+.notification p{
+  font-size: 1.5em;
+}
+.notification .view{
+  margin-top: 3em;
+}
+
+@media (max-width:600px){
+  .notification p{
+    font-size: 1.3em;
+    padding: 0 1em;
+  }
+
+  .infoBtn .studentBtn{
+    margin: 1em 0;
+  }
+}
+
+@media (max-width:480px){
+  .topButtons{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+}
+
+@media (max-width:375px){
+  .topButtons{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .newCourseBtn{
+    margin-top: 1em;
+  }
+}
+
+/* =====================================Add new course ========================== */
+
+.addNewCourse{
+  margin: 4em;
+}
+
+.courseDashboardTopNav{
+  margin: 2em 0;
+}
+
+@media (max-width:480px) {
+  .addNewCourse {
+    margin: 1em;
+  }
+}
+
+/* =================================== Edit New Course ======================= */
+.edit_courses{
+  margin:1em;
+}
+
+.videoReminder {
+  font-size: .8em;
+  padding: 2em 1em;
+}
+
+.videoReminder i{
+  margin: 0 .6em;
+}
+/* ========================== Course Details ========================== */
+.course_details{
+  margin: 4em 0 0;
+}
+
+.course_video{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.course_video video{
+  width: 60%;
+  height: auto;
+}
+
+.courseDetail{
+  margin: 4em 3em;
+}
+
+
+.enrollCTA, .schedules{
+  background-color: rgb(112, 112, 112, 0.2);
+  padding: 3em;
+}
+
+.enrollCTA{
+  padding: 5em 3em;
+}
+
+.enrollCTA p{
+  margin: 0 auto;
+  font-size: 1.5em;
+}
+
+.teacherProfile, .courseLongDesc{
+  margin: 3em;
+}
+
+.scheduleBox{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 1em 0;
+  padding: 3em 1em;
+}
+
+
+@media (max-width:768px){
+  .enrollCTA{
+    padding: 2em;
+  }
+  
+  .enrollCTA p{
+    font-size: 1em;
+  }
+}
+
+
+@media (max-width:600px){
+  .scheduleBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 2em 1em;
+  }
+
+  .scheduleBox .enrollBtn{
+    margin-top: 2em;
+  }
+}
+
+
+/* =================coure filter and search========================== */
+
+.find_courses{
+  padding: 3em;
+  background-color: #f7f7f7;
+}
+
+.find_courses .form-group{
+  margin-bottom: .5em !important;
+}
+
+.categories label{
+  margin-left: 1em;
+}
+
+.list{
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 2em;
+  box-shadow: 0 0 10px rgb(0,0,0,0.2);
+  margin: 2em 0;
+}
+
+.list .courseTitle{
+  color: #000;
+  font-size: 1.4em;
+}
+
+.list .viewBtn{
+  float: right;
+  padding: .3em 1em;
+}
+
+.list .topBar{
+  border-bottom: 1px solid rgb(112, 112, 112, 0.4);
+}
+
+.sidebar{
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 0 0 10px rgb(0,0,0,0.2);
+}
+
+.mobileSidebar{
+  display: none;
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 0 0 10px rgb(0,0,0,0.2);
+  margin: 0 0 1em 0;
+}
+
+#price_range > div{
+  background: var(--primary-color);
+}
+
+.filter-widget {
+  margin: 3em 0;
+}
+
+
+@media (max-width:768px) {
+
+  .find_courses{
+    padding: 3em 1em;
+    background-color: #f7f7f7;
+  }
+
+}
+
+@media (max-width:600px) {
+  .find_courses{
+    padding: 3em 1em;
+    background-color: #f7f7f7;
+  }
+  .list .topBar{
+    padding-top: 4em;
+  }
+
+  .list .rating{
+    margin-top: 1em;
+    
+  }
+
+  .sidebar{
+    display: none;
+  }
+  .mobileSidebar{
+    display: block;
+  
+  }
+
+  .toggler{
+    background-color: transparent;
+    border: none;
+    margin-bottom: 3em;
+    color: var(--primary-color);
+  }
+}
+
+
+
+/* ===========================Sign Up========================== */
+
+.signup, .login{
+  margin: 4em 3em;
+}
+
+.signup form{
+  margin-top: 2em;
+}
+
+.signup form, .login form{
+  border-bottom: 1px solid rgb(0,0,0,0.2);
+}
+
+.signup form .form-control, .login form .form-control{
+  box-shadow: 0 0 4px rgb(0,0,0,0.2);
+  margin: 1.5em 0;
+  padding: 1.4em 1.2em;
+}
+
+.signupSidebar img{
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+  margin: 1em 0;
+}
+
+.googleSignUp .fab{
+  position: relative;
+}
+
+.or{
+  border-bottom: 1px solid rgb(0,0,0,0.1);
+  border-top: 1px solid rgb(0,0,0,0.1);
+  padding: 1em 0;
+  margin: 2em 0;
+  color: var(--primary-color);
+}
+
+.signUpBtn, .loginBtn{
+  padding: .6em 3em !important;
+}
+
+
+@media (max-width:992px){
+
+  .signupSidebar h2{
+    font-size: 1.5em;
+  }
+
+}
+
+@media (max-width:768px) {
+
+  .signupSidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2em;
+  }
+
+  .signupSidebar h2{
+    font-size: 2em;
+  }
+
+  .signupSidebar img{
+    width: 40%;
+    height: 40%;
+    object-fit: cover;
+    margin: 1em 0;
+  }
+
+  .googleSignUp{
+    margin-top: 2em;
+  }
+}
+
+
+@media (max-width:480px){
+  .signup, .login{
+    margin: 4em 1em;
+  }
+
+}
+
+@media (max-width:375px) {
+
+  .signupSidebar h2{
+    font-size: 1.5em;
+  }
+
+  .signupSidebar img{
+    width: 40%;
+    height: 40%;
+    object-fit: cover;
+    margin: 1em 0;
+  }
+}
+
+/* =======================================Login================================ */
+
+.loginSidebar img{
+  width: 70%;
+  height: 70%;
+  object-fit: cover;
+}
+
+.loginSidebar span{
+  color: var(--primary-color);
+}
+
+.login form{
+  padding-bottom: 3em;
+  margin-left: 3em;
+}
+
+.login form h3{
+  padding-bottom: 1.2em;
+}
+
+.login button{
+  background-color: transparent;
+  border: none;
+  color: var(--primary-color);
+}
+
+@media (max-width:1024px) {
+  .loginSidebar h3{
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width:768px) {
+  .loginSidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2em;
+    border-bottom: 1px solid rgb(0,0,0,0.2);
+  }
+
+  .login form{
+    margin-top: 3em;
+  }
+}
+
+/* ============================Tutor Profile ================================ */
+
+.profile{
+  margin: 4em;
+}
+
+.topProfile, .middleProfile{
+  box-shadow: 0 0 10px rgb(0,0,0,0.1);
+  padding: 2em 0;
+  margin: 2em 0;
+}
+
+.middleProfile .btn{
+ 
+}
+ .profileImg{
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 1em auto;
+}
+
+.topProfile .fas{
+  font-size: 5em;
+}
+
+.tutor_schedule{
+  /* background-color: rgb(0,0,0,0.1); */
+  padding: 1em;
+}
+
+#doctor_schedule_form .modal-body{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#doctor_schedule_form .form-group{
+  width: 100%;
+}
+
+.showSchedule{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 4em 0;
+}
+
+.showSchedule p{
+  font-size: 0.9em;
+  font-weight: 600;
+}
+
+.showSchedule .days{
+  color: var(--primary-color);
+  font-size: 1.1em;
+}
+.availability{
+  margin: 3em 1em 0;
+  background-color: #fff;
+  padding: 1em;
+  box-shadow: 0 0 10px rgb(0,0,0,0.1);
+  border-radius: 5px;
+}
+
+#calendar{
+  background-color: #fff;
+  padding: 2em 1em;
+  margin: 1em;
+}
+
+.fc .fc-toolbar>*>:first-child{
+  font-size: 1em !important;
+}
+
+.fc-toolbar .fc-right{
+  display: none;
+}
+
+.fc-view, .fc-view>table{
+  margin-top: 4em;
+}
+
+.fc-day-header{
+  font-size: .9em;
+}
+
+.fc td, .fc th{
+  vertical-align: center !important;
+}
+
+/* ====================================== Enroll ================================== */
+.enrollDetails, .confirmPay{
+  padding: 2em 3em;
+}
+
+.confirmPay h2{
+  color: var(--primary-color);
+}
+
+.payImg{
+  width: 30%;
+  height: 30%;
+  object-fit: contain;
+}
+
+.confirmBox{
+  box-shadow: 0 1px 12px rgb(0,0,0,0.1);
+  text-align: center;
+  padding: 2em 0;
+}
+
+.confirmBox img{
+  width: 20%;
+  height: 20%;
+  object-fit: cover;
+  margin: 1em 0;
+}
+
+
+
+.confirmPay #pay_now{
+  padding: .6em 2em;
+}
+/* ====================================== Payment ===========================*/
+
+.paymentSuccess{
+  /* min-height: 400px; */
+  margin: 10% auto;
+
+  /* padding: 50%; */
+}
+
+.message{
+  box-shadow: 0 0 10px rgb(0,0,0,0.3);
+  padding: 3em 2em;
+  border-radius: 20px;
+}
+
+.message span{
+  display: block;
+}
+
+
+/* ================================== Booking ================================== */
+
+.booking_details{
+  margin: 4em 2em;
+}
+.booking_details .details{
+  box-shadow: 0 0 10px rgb(0,0,0,0.1);
+  padding: 1em;
+  border-radius: 10px;
+}
+
+/* ================================ student dashboard ========================= */
+
+.studentDashboard{
+  margin: 2em 4em;
+}
+
+
+.studentDashboard .topHeader{
+  padding-bottom: 2em;
+  border-bottom: 1px solid var(--primary-color);
+}
+
+.currentClasses{
+  padding: 1em 1em;
+  /* background-color: rgb(0,0,0,0.1); */
+  /* border-bottom: 1px solid var(--primary-color); */
+}
+
+.currentClasses .btn{
+  display: block !important;
+}
+
+.studentDashboard .heading{
+  color: #000;
+  font-weight: 600;
+  font-size: 1em;
+}
+
+.currentClasses .note{
+  
+  font-size: 0.9em;
+  color: var(--primary-color);
+  font-style: italic;
+}
+
+.bookedCourse{
+  box-shadow: 0 0 12px rgb(0,0,0,0.2);
+  padding: 1em;
+  border-radius: 10px;
+}
+
+.bookedCourse p:nth-child(1){
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 1em;
+}
+
+/* ==============================Notification dhasboard ==================== */
+.studentNotifications{
+  margin: 4em 3em;
+}
+
+.notificationList{
+  box-shadow: 0 0 10px rgb(0,0,0,0.1);
+  padding: 1em;
+  font-weight: 600;
+}
+
+.notificationList span{
+  color: var(--primary-color);
+}
+
+/* ========================== update profile======================================= */
+
+.update_Profile{
+  margin: 4em 2em;
+}
+
+.update_Profile .form-group{
+  margin: 2em 0;
+}
+.update_Profile form{
+  margin-top: 2em;
+}
+
+.profileHeading{
+  position: relative;
+  margin-top: 3em; 
+  padding-bottom: 2em;
+}
+
+.profileHeading::after{
+  position: absolute;
+  content:'';
+  top:30px;
+  left: 0;
+  border-bottom: 2px solid var(--primary-color);
+  width: 100px;
+}
+
+/* ======================================= Review ================================== */
+.all_Reviews .topButtons{
+  margin: 2em;
+}
+
+.reviews{
+  padding: 3em 2em;
+}
+
+.reviews .panel-title a{
+  color: #000;
+}
+
+.reviews .note{
+  padding: 1em 0;
+  border-bottom: 1px solid #707070;
+}
+
+.review .profImg{
+  width: 10%;
+  height: 10%;
+  margin-bottom: 1em;
+}
+
+.review{
+  border-bottom: 1px solid rgb(112, 112, 112, 0.1);
+  padding: 1em 0;
+}
+
+.be-img-comment {
+  width: 60px;
+  height: 60px;
+  float: left;
+  margin-bottom: 15px;
+}
+.be-img-comment img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.be-comment-content{
+  margin-left: 1em;
+}
+
+.be-comment-name{
+  color: var(--primary-color);
+  font-size: .9em;
+}
+
+.be-comment-time{
+  padding-left: 1em;
+  font-size: .9em;
+}
+
+.be-comment-text{
+  font-size: 13px;
+  line-height: 18px;
+  color: #7a8192;
+  display: block;
+  background: #f6f6f7;
+  border: 1px solid #edeff2;
+  padding: 15px 20px 20px 20px;
+  margin-top: 1em;
+}
+
+.checked { 
+  color: #e7ab3c; 
+}
+
+.unchecked{
+ color:#000;
+}
+
+#chart-container .comment{
+  padding: 1em;
+  border-radius: 10px;
+  box-shadow: 0 3px 1px #4776E6,
+            -5px 0px 1px -1px #8E54E9,
+            0 -2px 1px -1px rgb(0,0,0,0.1);
+  margin: 2em 0;
+}
+
+/* ================================== Meetings ============================ */
+
+.meetingsDashboard {
+  min-height: 40vh;
+  margin: 0 1em;
+}
+
+.meetingsDashboard .topButtons{
+  margin: 2em 0;
+}
+
+.meetingsDashboard .note{
+  font-weight: 600;
+  margin: 5em auto 0;
+  text-align: center;
+}
+
+.meetingsDashboard .card{
+  margin: 3em 0;
+  box-shadow: 0 0 5px rgb(0,0,0,0.2);
+}
+
+.card-header{
+  background-color: var(--primary-color) !important;
+  color: #fff;
+}
+
+.card-footer{
+  background-color: #fff !important;
+}
+
+.card-footer a{
+  font-weight: 600;
+}
+
+/* ================================ Search ===================================== */
+.searchWrapper{
+  padding: 2em ;
+}
+
+/* ================================= Student Details ============================= */
+
+.studentList{
+  margin: 3em 2em;
+}
+
+.studentList .list{
+  padding: 1em 3em;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgb(0,0,0,0.1);
+}
+
+.list .profileImage{
+  width: 100%;
+  height: 100%;
+}
+
+.profileImage img{
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
+}
+
+.list .studentDetail{
+  border-bottom: 1px solid #e4e4e4;
+}
+
+
+
+/* ================================ Teacher dashboard =========================== */
+.briefDetails{
+  margin: 2em 0 6em;
+}
+
+.briefDetails .info{
+  border-radius: 10px;
+  padding: 1em;
+  box-shadow: 0 0 20px rgb(0,0,0,0.1);
+  background:linear-gradient(to bottom right, #4776E6, #8E54E9);
+  color: #fff;
+  margin: 1em 0;
+}
+
+#chart-container .row{
+  margin: 6em 0 !important;
+}
+
+canvas{
+  width: 100%;
+  height: 90% !important;
+  object-fit: contain;
+}
+
+.classesDashboard .topButtons{
+  margin: 1em 1em;
+}
+
+.addSchedule{
+  margin: 2em 0;
+}
+
+.addSchedule .btn{
+  margin: 1em 0;
+}
+/* ================================== All Reviews ================================== */
+
+.single_review{
+  box-shadow: 0 3px 1px #4776E6,
+            -5px 0px 1px -1px #8E54E9,
+            2px -2px 10px -1px rgb(0,0,0,0.1);
+  /* box-shadow: 0 0 10px rgb(0,0,0,0.1); */
+  border-radius: 10px;
+  margin: 4em 0 2em;
+  padding: 1em;
+}
+
+.single_review .proImage{
+  width: 20%;
+  height: 20%;
+}
+
+.single_review .proImage img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.single_review span{
+  display: block;
+}
+
+.reviewDetail{
+  width: 100%;
+}
+
+.reviewDetail .name{
+  border-bottom: 1px solid #cecece;
+  padding: 2em 0;
+}
+
+.reviewFooter{
+  border-top: 1px solid #cecece;
+  padding: 1em 0;
+}
+
+
+/* =================================== Forgot Password ========================== */
+
+.forgotPassword, .reset_password{ 
+  margin: 4em;
+}
+
+.forgotModal, .resetModal{
+  box-shadow: 0 0 10px rgb(0,0,0,0.1);
+  border-radius: 10px;
+  padding: 2em 6em;
+  margin: 3em 0 0;
+}
+
+.forgotModal input{
+  border: none;
+  border-bottom: 2px solid #000;
+  margin: 1em 0;
+}
+
+.resetModal input{
+  border: none;
+  border-bottom: 2px solid #000;
+  margin: 2em 0;
+  padding: 1em;
+}
+
+.resetModal input::placeholder{
+  color: #000;
+  font-weight: 600;
+}
+
+.forgotModal .btn, .resetModal .btn{
+  padding: .5em 3em;
+}
