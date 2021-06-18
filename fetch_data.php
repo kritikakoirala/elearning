@@ -23,13 +23,10 @@ if(isset($_POST["action"])){
     $query.= "AND Tags IN ('".$cat_filter."')";
   }
 
-
-
   if(isset($_POST['titleSort'])){
     $value = $_POST['titleSort'];
     if($value == 'ascTitle'){
-        $query.="ORDER BY Course_Title ASC";
-      
+      $query.="ORDER BY Course_Title ASC";
     }
     elseif($value == 'descTitle'){
         $query.="ORDER BY Course_Title DESC";
@@ -43,7 +40,9 @@ if(isset($_POST["action"])){
   $filterQueryResult = $filterQuery->fetch_all(MYSQLI_ASSOC);
 
   if($filterQuery->num_rows>0){
-    foreach($filterQueryResult as $row){?>
+    foreach($filterQueryResult as $row){
+        $courseId = $row['Course_id']
+      ?>
 
       <div class="list">
         <a href="/Elearning/course_detail.php?id=<?php echo $row['Course_id']?>" class="btn viewBtn">View Details</a>
@@ -59,11 +58,17 @@ if(isset($_POST["action"])){
             </div>
           </div>
           <div class="rating d-flex justify-content-start justify-content-sm-end justify-content-md-end ">
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
-            <i class="far fa-star"></i>
+           
+            <?php
+              $getRating = $mysqli->query("select  FORMAT(AVG(DISTINCT Rating), 2) as Rating from reviews where Course_id = $courseId Group By Course_id");
+              if($getRating->num_rows>0){
+                $getRatingResult = $getRating->fetch_assoc();
+                
+                ?>
+                  <span><?php echo $getRatingResult['Rating']?> <i class="fas fa-star fa-2x checked" ></i></span>
+                <?php
+              }
+            ?>
 
           </div>
       </div>

@@ -71,6 +71,14 @@ $(document).ready(function(){
  
   });
 
+  // reply to
+
+  $('.reply').on("click", function(){
+    $parentId = $('#parentId').val();
+    $('.replyTo').css("display", "block");
+    $('#parentReviewId').val($parentId)
+  })
+
   $('#classModal').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget) // Button that triggered the modal
     var studentEmail = button.data('value')

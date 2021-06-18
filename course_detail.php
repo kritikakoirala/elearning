@@ -2,7 +2,6 @@
 
 include './includes/conn.php';
 include './includes/header.php'; 
-global $mysqli;
 
 if(isset($_GET['id'])){
   $courseId = $_GET['id'];
@@ -11,7 +10,6 @@ if(isset($_GET['id'])){
 if(isset($_SESSION['user'])){
   $userId = $_SESSION['user']['USER_ID'];
   $userType = $_SESSION['user']['USER_TYPE'];
-
 }
 
 // insert into enroll
@@ -34,27 +32,78 @@ if(isset($_POST['postReview'])){
   $rating = $rating?$_POST['hdnRateNumber']:0;
 
   if(!$emailErr && !$messageErr ){
-        
-   $reviewQuery = $mysqli->query("select * from reviews where Course_id = $courseId AND User_id = $userId AND Review = '$message'");
+    if(isset($_SESSION['user'])){
+      $reviewQuery = $mysqli->query("select * from reviews where Course_id = $courseId AND User_id = $userId AND Review = '$message'");
+     
+      if($reviewQuery->num_rows==0){
+      
+        $insertReviewQuery = $mysqli->query("INSERT into reviews (Course_id, User_id, Review, Rating,  Review_Date, Reply_To)
+        Values ($courseId, $userId, '$message', $rating, CURRENT_TIMESTAMP, '')
+        ");
+        if($insertReviewQuery){?>
+          <p class = "alert alert-success alert-dismissible py-4 font-weight-bold my-4">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <?php echo 'Your review has successfully posted' ?>
+          </p> 
 
-   if($reviewQuery->num_rows==0){
-    $insertReviewQuery = $mysqli->query("INSERT into reviews (Course_id, User_id, Review, Rating,  Review_Date)
-    Values ($courseId, $userId, '$message', $rating, CURRENT_TIMESTAMP)
-    ");
-    if($insertReviewQuery){?>
-      <p class = "alert alert-success alert-dismissible py-4 font-weight-bold my-4">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <?php echo 'Your review has successfully posted' ?>
-      </p> 
-
-      <?php
-    }else{
-      echo mysqli_error($mysqli);
+          <?php
+        }else{
+          echo mysqli_error($mysqli);
+        }
+      }
     }
-   }
+    else{
+      ?>
+        <p class = "alert alert-danger alert-dismissible py-4 font-weight-bold my-4">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          Please login to leave a comment. <a href="http://localhost/Elearning/login.php">Login</a>
+        </p> 
+      <?php
+    }
 
+  }
+}
+
+if(isset($_POST['reply'])){
+  if(empty($_POST['email'])){
+    $emailErr = 'Please enter your Email';
+  }else{
+    $email = e($_POST['email']);
+  }
+  if(empty($_POST['message'])){
+    $messageErr = 'Please enter your review for this course';
+  }else{
+    $message = e($_POST['message']);
+  }
+
+  $parentId = $_POST['parentReviewId'];
+
+  if(!$emailErr && !$messageErr ){
+    
+      $reviewQuery = $mysqli->query("select * from reviews where Course_id = $courseId AND User_id = $userId AND Review = '$message'");
+      var_dump($reviewQuery->num_rows);
+      if($reviewQuery->num_rows==0){
+      
+        $insertReviewQuery = $mysqli->query("INSERT into reviews (Course_id, User_id, Review, Review_Date, Reply_To)
+        Values ($courseId, $userId, '$message', CURRENT_TIMESTAMP, $parentId)
+        ");
+        if($insertReviewQuery){?>
+          <p class = "alert alert-success alert-dismissible py-4 font-weight-bold my-4">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <?php echo 'Your review has successfully posted' ?>
+          </p> 
+
+          <?php
+        }else{
+          echo mysqli_error($mysqli);
+        }
+      }
   }
 }
 
@@ -79,7 +128,6 @@ if(isset($_SESSION['user'])){
 
 $getSingleCourseQuery = $mysqli->query("select * from course where Course_id = $courseId");
 $courseResult = $getSingleCourseQuery->fetch_assoc();
-
 
 ?>
   <div class="course_details">
@@ -125,7 +173,21 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
       <p class="classTime  py-2"><span class=" font-weight-bold">Time per Class:</span> <?php echo $courseResult['Time_Per_class']; ?></p>
       <p class="instruction  py-2"><span class=" font-weight-bold">Instruction Language:</span> <?php echo $courseResult['Course_Language']; ?></p>
       <p class="tags  py-2"><span class=" font-weight-bold">Tags:</span> <?php echo $courseResult['Tags']; ?></p>
+      
+      <?php
+        $getRating = $mysqli->query("select  FORMAT(AVG(DISTINCT Rating), 2) as Rating from reviews where Course_id = $courseId Group By Course_id");
+        if($getRating->num_rows>0){
+          $getRatingResult = $getRating->fetch_assoc();
+          ?>
+            <span class="font-weight-bold">Rating:</span> <?php echo $getRatingResult['Rating']?> <i class="fas fa-star checked"></i>
+          <?php
+        }
+      ?>
 
+    <div class="courseLongDesc">
+      <h4 class="mb-4">Course Description</h4>
+      <p class="text-justify"> <?php if($courseResult['Long_Description']) echo $courseResult['Long_Description']; ?></p>
+    </div>
       
     </div>
     <?php 
@@ -177,31 +239,26 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
     </div>
 
     <?php
-    
-      
-      if($tutorProfileQuery->num_rows>0){
-    ?>
-    <div class="teacherProfile">
-      <div class="teacherDesc d-flex flex-column justify-content-center align-items-center mb-4">
-        <i class="fas fa-user-circle fa-5x mb-4"></i>
-        <h3><?php echo $tutorResult['First_Name'].' '.$tutorResult['Middle_Name'].' '. $tutorResult['Last_Name'];?></h3>
-        
-        <span class="mt-2 mb-4"><?php  echo $tutorResult['Skills'] ?></span>
+
+    if($tutorProfileQuery->num_rows>0){
+      ?>
+      <div class="teacherProfile">
+        <div class="teacherDesc d-flex flex-column justify-content-center align-items-center mb-4">
+          <i class="fas fa-user-circle fa-5x mb-4"></i>
+          <h3><?php echo $tutorResult['First_Name'].' '.$tutorResult['Middle_Name'].' '. $tutorResult['Last_Name'];?></h3>
+          
+          <span class="mt-2 mb-4"><?php  echo $tutorResult['Skills'] ?></span>
+        </div>
+
+        <div class="briefInfo">
+          <p class="text-justify"><?php  echo $tutorResult['About_You'] ?></p>
+        </div>
+
+        Message the Tutor
       </div>
-
-      <div class="briefInfo">
-        <p class="text-justify"><?php  echo $tutorResult['About_You'] ?></p>
-      </div>
-    </div>
-    <?php
-      }
-    ?>
-
-    <div class="courseLongDesc">
-      <h4 class="mb-4">Course Description</h4>
-      <p class="text-justify"> <?php if($courseResult['Long_Description']) echo $courseResult['Long_Description']; ?></p>
-    </div>
-
+      <?php
+    }
+      ?>
 
     <div class="schedules" id="schedule">
       <h4 class="mb-4 pb-4">Weekly Schedules</h4>
@@ -212,13 +269,9 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
         $scheduleResult = $schedule->fetch_all(MYSQLI_ASSOC);
 
         if($schedule->num_rows>0){
-          
           foreach($scheduleResult as $scheduleResult){
-            
             $scheduleId = $scheduleResult['Schedule_id'];
-            
             ?>
-
               <div class="scheduleBox">
              
                 <p class="ml-4"> <span class="font-weight-bold mr-4"><?php echo $scheduleResult['Schedule_Day']?>:</span>  <?php echo $scheduleResult['Start_Time']. ' - ' . $scheduleResult['End_Time']?></p>
@@ -264,13 +317,9 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
                   }
                 }
                 ?>
-                
-
               </div>
             <?php
             }
-              
-            
               if(isset($_POST['bookCourse'])){
 
                 $checkEnroll = $mysqli->query("select * from enroll, student where enroll.student_id = student.Student_id AND student.User_id = $userId AND enroll.Course_id = $courseId AND enroll.Enroll_Status = 'completed'");
@@ -357,7 +406,6 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
          
         }
       
-
       ?>
     </div>
     <div class="reviews">
@@ -365,11 +413,11 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
         <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title mb-4">
-              <a data-toggle="collapse" href="#collapse1">Leave a Review</a>
+              <a data-toggle="collapse" >Leave a Review</a>
             </h4>
             
           </div>
-          <div id="collapse1" class="panel-collapse collapse">
+          <div id="collapse1" class="">
             
             <form method="POST" action="../Elearning/course_detail.php?id=<?php echo $courseId?>">
               <div class="form-group">
@@ -409,41 +457,122 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
             <div class="showReviews">
               <h5 class="my-4">All Comments</h5>
               <?php
-                $review = $mysqli->query("select * from reviews, user, student where Course_Id = $courseId AND reviews.User_id = student.User_id AND student.User_id = user.User_id AND user.User_id = $userId");
+              
+                $review = $mysqli->query("select * from reviews, user, student where Course_Id = $courseId AND reviews.User_id = student.User_id AND student.User_id = user.User_id AND Reply_To = 0");
                 $reviewResult = $review->fetch_all(MYSQLI_ASSOC);
                 
                 if($review->num_rows>0){
                   foreach($reviewResult as $row){
+                    $reviewId = $row['ReviewId']
                     ?>
                     <div class="review d-flex flex-row align-items-center">
-                    <div class="be-img-comment">	
-                    <?php
-                        if(!empty($row['Profile_Image'])){
-                          ?>
-                            <img class="proImg" src="../Elearning/<?php echo $row['Profile_Image'];?>" alt="profile">
-                          <?php
-                        }else{?>
-                          <i class='fas fa-user-circle mb-4 profileImg d-flex flex-row justify-content-center align-items-center'></i>
+                      <div class="be-img-comment">	
                         <?php
-                        }
-                      ?>
+                          if(!empty($row['Profile_Image'])){
+                            ?>
+                              <img class="proImg" src="../Elearning/<?php echo $row['Profile_Image'];?>" alt="profile">
+                            <?php
+                          }else{?>
+                            <i class='fas fa-user-circle mb-4 fa-3x profileImg d-flex flex-row justify-content-center align-items-center'></i>
+                          <?php
+                          }
+                        ?>
                       </div>
                       <div class="be-comment-content">
+                        <input type="hidden" name="parentId" id="parentId" value="<?php echo $reviewId;?>">
                         
-                          <span class="be-comment-name font-weight-bold"><?php echo $row['username'];?></span>
+                        <span class="be-comment-name font-weight-bold"><?php echo $row['username'];?></span>
                           
-                          <span class="be-comment-time">
+                        <span class="be-comment-time">
                             <i class="fa fa-clock-o"></i>
-                            <span class="font-weight-bold"><?php echo $row['Review_Date'];?>
-                          </span>
-                          </span>
+                            <span class="font-weight-bold"><?php echo $row['Review_Date'];?></span>
+                        </span>
                           <p class="be-comment-text">
                             <?php echo $row['Review']; ?>
-                          </p>
+                            <br>
+                            <?php
+                              if(isset($_SESSION['user'])){
+                                ?>
+                                  <button class="reply">Reply</button>
+                                <?php
+                              }
 
-                        
-                      </div>
+                              $replyReview = $mysqli->query("select * from reviews, user, student where Course_Id = $courseId AND reviews.User_id = student.User_id AND student.User_id = user.User_id AND Reply_To = $reviewId");
+                              $replyreviewResult = $replyReview->fetch_all(MYSQLI_ASSOC);
+                
+                              if($replyReview->num_rows>0){
+                                
+                                foreach($replyreviewResult as $row){
+                                  $replyReviewId = $row['ReviewId']
+                                  ?>
+                                  <div class="review d-flex flex-row align-items-center">
+                                    <div class="be-img-comment">	
+                                      <?php
+                                        if(!empty($row['Profile_Image'])){
+                                          ?>
+                                            <img class="proImg" src="../Elearning/<?php echo $row['Profile_Image'];?>" alt="profile">
+                                          <?php
+                                        }else{?>
+                                          <i class='fas fa-user-circle mb-4 fa-3x profileImg d-flex flex-row justify-content-center align-items-center'></i>
+                                        <?php
+                                        }
+                                      ?>
+                                    </div>
+                                    <div class="be-comment-content">
+                                      <input type="hidden" name="parentId" id="parentId" value="<?php echo $replyReviewId;?>">
+                                      
+                                      <span class="be-comment-name font-weight-bold"><?php echo $row['username'];?></span>
+                                        
+                                      <span class="be-comment-time">
+                                          <i class="fa fa-clock-o"></i>
+                                          <span class="font-weight-bold"><?php echo $row['Review_Date'];?></span>
+                                      </span>
+                                      <p class="be-comment-text">
+                                        <?php echo $row['Review']; ?>
+                                        <br>
+                                        <?php
+                                          if(isset($_SESSION['user'])){
+                                            ?>
+                                              <button class="reply">Reply</button>
+                                            <?php
+                                          }
+                                          ?>
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <?php
+                                }
+                              }
+                            ?>
+                            
+                          </p>
+                          <div class="replyTo">
+                            <form method="POST" action="../Elearning/course_detail.php?id=<?php echo $courseId?>">
+                              <div class="form-group">
+                                <label for="email">Email</label>
+                                <input class="form-control" type="email" name="email" >
+                              </div>
+                              <span class="errorMsg">
+                                <?php  echo $emailErr ?>
+                              </span>
+                            
+                              <div class="form-group">
+                                <label for="messgae">Your Review</label>
+                                <textarea name="message" id="messgae" cols="20" rows="5" class="form-control"></textarea>
+                              </div>
+
+                              <span class="errorMsg">
+                                <?php  echo $messageErr ?>
+                              </span>
+                              <input type="text" name="parentReviewId" id = "parentReviewId">
+                              <input type="submit" name="reply" value="Reply">
+                            </form>
+                          </div>
+                            
+                      
+                        </div>
                     </div>
+                    
                     
                   <?php
                   }
@@ -454,6 +583,9 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
                     <span>Be the first one to leave a comment.</span>
                   <?php
                 }
+
+
+              
               ?>
             </div>
           </div>
