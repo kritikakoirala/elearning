@@ -90,12 +90,12 @@
         </div>
         <div class="col-lg-8 col-md-8 col-sm-12" >
 
-          <div class="googleSignUp d-flex flex-column justify-content-center align-items-center" >
+          <!-- <div class="googleSignUp d-flex flex-column justify-content-center align-items-center" >
             <h3 class="mb-4">Sign In with Google</h3>
             <button class="btn mt-3"><i class="fab fa-google"></i>  Sign In with Google</button>
           </div>
 
-          <div class="or font-weight-bold text-center text-uppercase">OR</div>
+          <div class="or font-weight-bold text-center text-uppercase">OR</div> -->
 
           <?php if(isset($error)) echo '<span class="errorMsg serverErrorMsg">'.$error.'</span>'; ?>
           <form method='POST' action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" class="pb-4">

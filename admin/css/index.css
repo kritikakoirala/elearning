@@ -79,6 +79,20 @@ html {
   margin: 0 2em !important;
 }
 
+.profileHeading{
+  position: relative;
+  margin-top: 3em; 
+  padding-bottom: 2em;
+}
+
+.profileHeading::after{
+  position: absolute;
+  content:'';
+  top:30px;
+  left: 0;
+  border-bottom: 2px solid var(--primary-color);
+  width: 100px;
+}
 
 /* ================================================================================== */
 .wrapper{

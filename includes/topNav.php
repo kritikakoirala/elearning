@@ -25,6 +25,7 @@
                 <a href = '../Elearning/students.php' class="btn studentBtn">Students</a>
                 <a href = '../Elearning/courses.php' class="btn courseBtn">Courses</a>
                 <a href="../Elearning/teacher_classes.php" class="btn">Classes</a>
+                
               </div>
 
               <?php

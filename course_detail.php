@@ -196,7 +196,7 @@ $courseResult = $getSingleCourseQuery->fetch_assoc();
 
     <div class="enrollCTA d-flex flex-md-row flex-sm-column flex-column justify-content-between align-items-center ">
      
-      <p class="font-weight-bold text-uppercase mb-sm-3 mb-3" >Taught on Zoom</p>
+      <p class="font-weight-bold text-uppercase mb-sm-3 mb-3" >Taught on Zoom / Meet</p>
 
       <div class="enrollBtns d-flex flex-column justify-content-center align-items-center" data-aos='fade-left'>
         <?php

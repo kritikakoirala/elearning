@@ -50,16 +50,35 @@ if(isset($_SESSION['user'])){
             
             ?>
             <li class="nav-item"><a class="nav-link" href="/Elearning/teacher_dashboard.php">Dashboard</a>  </li>
-            <li class="nav-item">
-            <a href="/Elearning/profile.php" class="nav-link profileLink"><?php echo $_SESSION['user']['USERNAME']; ?></a>
-         </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link profileLink dropdown-toggle"  data-toggle="dropdown"><?php echo $_SESSION['user']['USERNAME']; ?>
+              </a>
+                <div class="dropdown-menu"> 
+                  <a class="dropdown-item" href="/Elearning/profile.php">Profile</a>                 
+                  <a class="dropdown-item" href="/Elearning/logout.php">Logout</a>
+                </div>
+            
+            </li>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link profileLink dropdown-toggle"  data-toggle="dropdown">Reports</a>
+                <div class="dropdown-menu"> 
+                  <a class="dropdown-item" href="/Elearning/reports/enroll_report.php">Enroll Report</a>                 
+                  <a class="dropdown-item" href="/Elearning/reports/course_report.php">Course Report</a>   
+                  <a class="dropdown-item" href="/Elearning/reports/rating_report.php">Popularity Report</a>   
+                </div>
+            
+            </li>
             <?php
           }elseif(($_SESSION['user']['USER_TYPE'])=='student'){
          
             ?>
             <li class="nav-item"><a class="nav-link" href="/Elearning/student_dashboard.php">Dashboard</a></li>
-            <li class="nav-item">
-            <a href="/Elearning/student_profile.php" class="nav-link profileLink"><?php echo $_SESSION['user']['USERNAME']; ?></a>
+            <li class="nav-item dropdown" >
+            <a href="#" class="nav-link profileLink dropdown-toggle" data-toggle="dropdown"><?php echo $_SESSION['user']['USERNAME']; ?></a>
+              <div class="dropdown-menu"> 
+                <a class="dropdown-item" href="/Elearning/student_profile.php">Profile</a>                 
+                <a class="dropdown-item" href="/Elearning/logout.php">Logout</a>
+              </div>
          </li>
             <li class="nav-item"><a href='../Elearning/student_notification.php' class="nav-link">Notifications</a></li>
           <?php
@@ -78,9 +97,7 @@ if(isset($_SESSION['user'])){
             <a class="nav-link" href="/Elearning/meetings.php">Meetings</a>
           </li>
           
-          <li class="nav-item">
-            <a class="nav-link" href="/Elearning/logout.php">Logout</a>
-          </li>
+          
         <?php
         }else{?>
           <li class="nav-item">

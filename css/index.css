@@ -14,7 +14,7 @@
   box-sizing: border-box;
 }
 
-h1,h2,h3,h4,h5,h6, a, td, th, li{
+h1,h2,h3,h4,h5,h6, a, td, th, li, button{
   font-family: 'Poppins', sans-serif;
 }
 
@@ -128,7 +128,7 @@ table a{
 
 
 .navbar{
-  padding: 1em;
+  padding: 1.1em 1em !important;
   background-color: var(--primary-color);
 }
 
@@ -248,34 +248,56 @@ table a{
 
 /*=============================== LandingPage=============================*/
 
-.landingPage {
-  margin:5em 6em;
+.landingPage .container-fluid {
+  margin:0 !important;
+  padding:0 !important;
 }
 
-.landingPageContent{
-  margin-top: 5em;
+.landingPage{
+  position: relative;
 }
 
-.landingPageContent h2{
-  font-size: 3em;
-}
+.landingPage .overlay{
 
-.landingBtn{
-  margin-top: 2em;
-}
-
-
-.landingPage .landingPageImg{
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   width: 100%;
-  height: 80%;
+  background-color: rgb(0,0,0,0.5);
+}
+
+
+.landingPage video{
+  width: 100%;
+  height: 100vh;
   object-fit: cover;
 }
 
 
+.landingcontent{
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  text-align: center;
+  color: #fff;
+}
+
+.landingcontent h5{
+  display: block;
+  margin: 2em 0;
+}
+
+
+.landingBtn{
+  padding: .6em 2.3em !important;
+}
+
 /*==================================== Teachers ============================= */
 
 .teachers{
-  margin: 4em 3em;
+  margin: 6em 5em;
 }
 
 .teachers .teacherImg{
@@ -301,7 +323,7 @@ table a{
 }
 
 .detailsSection .fas{
-  font-size: 2em;
+  font-size: 4em;
 }
 
 .courses, .teacher, .student{
@@ -320,7 +342,7 @@ table a{
 /*========================== students =======================*/
 
 .students{
-  margin: 4em 5em;
+  margin: 6em 5em;
 }
 
 .students .content{
@@ -988,9 +1010,7 @@ table a{
   margin: 2em 0;
 }
 
-.middleProfile .btn{
- 
-}
+
  .profileImg{
   width: 10%;
   height: 10%;

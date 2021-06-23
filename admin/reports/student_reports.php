@@ -10,6 +10,7 @@
     <?php include '../includes/topHeader.php'; ?>
       <div class="student_reports">
         <div class="container">
+        <h5 class="profileHeading">Details of students enrolled in each course</h5>
           <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12">
             <table id ='dataTable' class="table table-bordered mt-4">
